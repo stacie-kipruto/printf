@@ -6,21 +6,19 @@
 #include <string.h>
 #include <stdarg.h>
 #include <unistd.h>
-#include <stddef.h>
 
 /**
-  * struct fmtspec - format specifiers
-  *
-  * @flag: c, s, f, d ...
-  * @fptr: function pointer
-  */
-struct fmtspec
+ * struct fprinter - a struct holding the
+ * format specifier and a pointer to the handling
+ * function
+ * @spec: the format specifier
+ * @hf: a pointer to the handling function
+ */
+typedef struct fprinter
 {
-	char *flag;
-	int (*fptr)(va_list);
-};
-
-typedef struct fmtspec fts;
+	char *spec;
+	int (*hf)(va_list);
+} fprinter;
 
 int _printf(const char *format, ...);
 int _putchar(char c);
